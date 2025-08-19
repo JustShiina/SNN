@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SNN - Swarm News Network</title>
+  <meta name="description" content="SNN - Swarm News Network: The latest news, events, and info about the AI VTuber Neuro-Sama." />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand" id="brandLink" aria-label="SNN Home">
+        <div class="logo" aria-hidden="true">
+          <!-- svg logo (same as before) -->
+          <svg viewBox="0 0 64 64" width="28" height="28" role="img" aria-label="SNN logo"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#8a4fff"/><stop offset="1" stop-color="#5a2bc8"/></linearGradient></defs><rect x="4" y="8" rx="10" width="56" height="48" fill="url(#g)"/><path d="M16 40c0-6 10-6 10-12s-10-6-10-12m22 24c0-6 10-6 10-12s-10-6-10-12" fill="none" stroke="#42f59e" stroke-width="4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="word">SNN <small>Swarm News Network</small></div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#home" data-route>Home</a>
+        <a href="#news" data-route class="active">News</a>
+        <a href="#events" data-route>Events</a>
+        <a href="#about" data-route>About</a>
+      </nav>
+      <div class="actions">
+        <button class="btn btn-ghost" id="loginBtn" aria-haspopup="dialog">Admin Login</button>
+        <button class="btn btn-primary hidden" id="addBtn">Add Card</button>
+        <button class="btn btn-ghost hidden" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="container hero">
+    <div class="hero-card">
+      <div class="hero-visual" aria-hidden="true">
+        <!-- waveform svg -->
+      </div>
+      <div class="hero-copy">
+        <div class="kicker">Neuro-Sama News</div>
+        <div class="headline">Your hub for the latest from the AI VTuber phenomenon</div>
+        <p class="sub">Breaking streams, collabs, events and more — curated by the Swarm. Add cards as an admin, organize content in grids, and keep fans up to date in style.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- NEWS -->
+    <section id="news" class="page active" aria-labelledby="newsTitle">
+      <div class="toolbar">
+        <h2 id="newsTitle">Latest News</h2>
+        <div class="search"><input id="newsSearch" type="search" placeholder="Search news…" aria-label="Search news"><span class="mag">🔍</span></div>
+      </div>
+      <div id="newsGrid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="page" aria-labelledby="eventsTitle">
+      <div class="toolbar">
+        <h2 id="eventsTitle">Events & Specials</h2>
+        <div class="notice">Add shop drops, art contests, tournaments and more.</div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div id="eventsGrid" class="grid" aria-live="polite"></div>
+        </div>
+        <aside>
+          <div class="card" style="padding:16px">
+            <div class="kicker">Tip</div>
+            <div class="card-title">Use video or image thumbnails</div>
+            <p class="card-text">Paste a direct <strong>image URL</strong> (PNG/JPG/WebP) or a <strong>YouTube link</strong>. YouTube links will auto-embed responsively.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page" aria-labelledby="aboutTitle">
+      <h2 id="aboutTitle">About SNN</h2>
+      <div class="grid">
+        <article class="card" style="padding:16px">
+          <h3 class="card-title">What is SNN?</h3>
+          <p class="card-text">SNN — the <em>Swarm News Network</em> — is a fan-driven hub dedicated to covering Neuro-Sama...</p>
+        </article>
+        <article class="card" style="padding:16px">
+          <h3 class="card-title">Who is Neuro-Sama?</h3>
+          <p class="card-text">Created by developer Vedal, Neuro-Sama blends advanced AI with VTubing...</p>
+        </article>
+        <article class="card" style="padding:16px">
+          <h3 class="card-title">Why this site?</h3>
+          <p class="card-text">We wanted a modern, highly interactive news portal tuned to Neuro’s aesthetic...</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+      <div>© <span id="year"></span> SNN — Swarm News Network</div>
+      <div class="socials" aria-label="SNN social links">
+        <a href="https://www.twitch.tv/vedal987" target="_blank" rel="noopener">🟣 Twitch</a>
+        <a href="https://www.youtube.com/@Neurosama" target="_blank" rel="noopener">▶ YouTube</a>
+        <a href="https://x.com/NeurosamaAI" target="_blank" rel="noopener">𝕏 Twitter</a>
+        <a href="https://discord.gg/neurosama" target="_blank" rel="noopener">💬 Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals (markup kept) -->
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="loginTitle">Admin Login</div>
+        <button class="btn btn-ghost" id="closeLogin" aria-label="Close">✕</button>
+      </div>
+      <form id="loginForm" class="form" autocomplete="off">
+        <div class="row"><label for="user">Username</label><input id="user" name="user" required /></div>
+        <div class="row"><label for="pass">Password</label><input id="pass" name="pass" type="password" required /></div>
+        <div class="error hidden" id="loginError">Invalid credentials.</div>
+        <div class="row" style="display:flex;gap:10px;justify-content:flex-end">
+          <button type="button" class="btn btn-ghost" id="cancelLogin">Cancel</button>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="notice">Demo credentials: <code>admin</code> / <code>swarm</code> (stored only in memory for this demo).</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="addModal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="addTitle">Add New Card</div>
+        <button class="btn btn-ghost" id="closeAdd" aria-label="Close">✕</button>
+      </div>
+      <form id="addForm" class="form">
+        <!-- form fields same as before -->
+        <div class="row inline">
+          <div class="row"><label for="type">Type</label>
+            <select id="type" name="type">
+              <option value="news">News</option>
+              <option value="event">Event</option>
+            </select>
+          </div>
+          <div class="row"><label for="badge">Badge</label><input id="badge" name="badge" placeholder="e.g. New, Live, Update" /></div>
+        </div>
+        <div class="row inline">
+          <div class="row"><label for="title">Title</label><input id="title" name="title" required /></div>
+          <div class="row"><label for="tag">Tag</label><input id="tag" name="tag" placeholder="e.g. Stream, Collab" /></div>
+        </div>
+        <div class="row"><label for="excerpt">Description</label><textarea id="excerpt" name="excerpt" placeholder="Short description"></textarea></div>
+        <div class="row"><label for="media">Media URL (image or YouTube link)</label><input id="media" name="media" placeholder="https://..." required /></div>
+        <div class="row"><label for="link">Article Link (optional)</label><input id="link" name="link" placeholder="https://..." /></div>
+        <div class="row" style="display:flex;gap:10px;justify-content:flex-end">
+          <button type="button" class="btn btn-ghost" id="cancelAdd">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Changelog panel (UI only) -->
+  <button id="changelogToggle" class="changelog-toggle" aria-expanded="false">Changelog</button>
+  <div id="changelogPanel" class="changelog-panel" aria-hidden="true" aria-live="polite">
+    <div class="kicker">Changelog</div>
+    <div id="changelogList" class="changelog-list"></div>
+    <div class="changelog-note">Notizen werden nur lokal gespeichert (localStorage).</div>
+    <form id="changelogForm" class="changelog-form" autocomplete="off">
+      <textarea id="changelogInput" placeholder="Kurz notieren..." rows="3"></textarea>
+      <div class="changelog-actions">
+        <button type="button" id="changelogClose" class="btn btn-ghost">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
